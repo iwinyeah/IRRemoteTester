@@ -1,0 +1,34 @@
+<!--
+<input type="button" onclick="__dOpen()" id="dRange" value="2020-06-01 - 2020-06-30" data-href="/cashList"></button>
+-->
+<dialog id="__D" align="center">请输入日期范围
+    <p>
+        <input id="__s" type="date" value="" />
+        -
+        <input id="__e" type="date" value="" />
+    <div align="right">
+        <input type="button" value="取消" onclick="__n()" />
+        <input type="button" value="确定" onclick="__y()" />
+    </div>
+</dialog>
+
+<script>
+    function __dOpen() {
+        var d = document;
+        var r = d.getElementById("dRange").value;
+        d.getElementById("__s").value = r.substring(0, 10);
+        d.getElementById("__e").value = r.substring(13, 23);
+        d.getElementById("__D").showModal();
+    }
+    function __n() {
+        document.getElementById("__D").close();
+    }
+    function __y() {
+        var d = document;
+        d.getElementById("__D").close();
+        var href = d.getElementById("dRange").getAttribute("data-href");
+        href += "?sDate=" + d.getElementById("__s").value;
+        href += "&eDate=" + d.getElementById("__e").value;
+        window.location.href = href;
+    }
+</script>
